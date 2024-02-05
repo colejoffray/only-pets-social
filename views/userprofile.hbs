@@ -1,0 +1,131 @@
+{{#if_eq userID activeUser}}
+    <div class="col s6 offset-s2">
+            <div class="profile-info">
+                <div class="row profile-header">
+                    {{#if user.profilePic}}
+                    <div class="profilePic">
+                        <img src="{{user.profilePic}}" alt="profilePic" class="responsive-img circle small-profile-pic">
+                    </div>
+                    {{else}}
+                    <div class="profilePic">
+                        <img src="/assets/blank-profile-circle.png" alt="profilePic" class="responsive-img circle small-profile-pic">
+                    </div>
+                    {{/if}}
+                    <h4>{{{user.userName}}}</h4>
+                </div>
+                
+                <div class="stats">
+                    <span class="stats-item">Posts: {{userPosts.length}}</span>
+                    <span class="stats-item">Followers: {{user.followedBy.length}}</span>
+                </div>
+                <div>
+                    <a href="/profile/edit/{{user._id}}" class="btn">Edit Profile</a>
+                </div>
+                
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- User Posts -->
+            {{#each userPosts}}
+                <div class="col s3 user-posts">
+                    <a href="/post/{{_id}}">
+                        <img src="{{image}}" class="responsive-img" alt="Post 2">
+                    </a>
+                
+                </div>
+            {{/each}}
+
+        </div>
+
+        <div class="col s2">
+                <div class="input-field">
+                    <input type="text" id="searchInput" class="validate" oninput="searchUsers()">
+                    <label for="searchInput">Search Users</label>
+                </div>
+        </div>
+{{else}}
+    <div class="col s6 offset-s2">
+            <div class="profile-info">
+                <div class="row profile-header">
+                    {{#if user.profilePic}}
+                    <div class="profilePic">
+                        <img src="{{user.profilePic}}" alt="profilePic" class="responsive-img circle small-profile-pic">
+                    </div>
+                    {{else}}
+                    <div class="profilePic">
+                        <img src="/assets/blank-profile-circle.png" alt="profilePic" class="responsive-img circle small-profile-pic">
+                    </div>
+                    {{/if}}
+                    <h4>{{{user.userName}}}</h4>
+                </div>
+                
+                <div class="stats">
+                    <span class="stats-item">Posts: {{userPosts.length}}</span>
+                    <span class="stats-item">Followers: {{user.followedBy.length}}</span>
+                </div>
+                <div>
+                    {{#if_includes following activeUser }}
+                        <div data-id="{{user._id}}" class="btn red lighten-2" id="follow-button">Following</div>
+                    {{else}}
+                        <div data-id="{{user._id}}" class="btn red" id="follow-button">Follow</div>
+                    {{/if_includes}}
+                </div>
+                
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- User Posts -->
+            {{#each userPosts}}
+                <div class="col s3 user-posts">
+                    <a href="/post/{{_id}}">
+                        <img src="{{image}}" class="responsive-img" alt="Post 2">
+                    </a>
+                
+                </div>
+            {{/each}}
+
+        </div>
+
+        <div class="col s2">
+                <div class="input-field">
+                    <input type="text" id="searchInput" class="validate" oninput="searchUsers()">
+                    <label for="searchInput">Search Users</label>
+                </div>
+        </div>
+
+
+{{/if_eq}} 
+
+
+<script>
+    const followButton = document.getElementById('follow-button')
+
+    followButton.addEventListener('click', followUser)
+
+    function followUser() {
+       scrollPosition = window.scrollY
+       const userID = followButton.getAttribute('data-id')
+
+       fetch(`/profile/follow/${userID}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': "application/json"
+        },
+        body: JSON.stringify({ 
+            id: userID
+        })
+       })
+       .then(result => {
+        location.reload()
+        window.scrollTo(0, scrollPosition)
+       })
+       .catch(err => {
+        console.error(err)
+       })
+    }
+</script>
+    
+    
+    

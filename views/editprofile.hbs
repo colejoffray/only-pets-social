@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="col s6 offset-s2">
+    <h4>Edit Profile</h4>
+    <div class="divider"></div>
+    <form action="/profile/edit/{{user._id}}" enctype="multipart/form-data" method="POST">
+      <input type="hidden" name="_method" value="PUT">
+      <div class="row">
+        <p class="custom-margin">Change Profile Picture</p>
+        <div class="editProfilePic">
+          {{#if user.profilePic}}
+            <div>
+              <img src="{/assets/fotor-ai-20231112182738_8.jpg}" alt="" class="responsive-img circle small-profile-pic">
+            </div>
+            <div class="input-field">
+              <input type="file" name="image" id="image">
+            </div>
+          {{else}}
+          <div>
+            <img src="/assets/blank-profile-circle.png" alt="" class="responsive-img circle small-profile-pic">
+          </div>
+          <div class="input-field">
+            <input type="file" name="image" id="image">
+          </div>
+          {{/if}}
+        </div>
+      </div>
+        <div class="row">
+          <div class="input-field">
+            <input type="text" name="username" id="username" value="{{user.userName}}">
+            <label for="username">Username</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field">
+            <textarea name="bio" id="bio" cols="30" rows="10" class="materialize-textarea">{{user.bio}}</textarea>
+            <label for="bio">Bio</label>
+          </div>
+        </div>
+        <div class="row center-align">
+              <button type="submit" class="btn" id="save-changes">Save Changes</button>
+              <a href="/profile/{{user.id}}" class="btn">Cancel</a>
+        </div>
+    </form>
+  </div>
+</div>
+ 
+

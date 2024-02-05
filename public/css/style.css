@@ -1,0 +1,143 @@
+.m1 {
+    margin-bottom: 1rem;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+}
+
+.borders {
+    border: 1px solid black;
+}
+
+
+.custom-margin {
+    margin-top: 2rem;
+}
+
+.max-1080x1080 {
+    max-width: 500px;
+    max-height: 500px;
+    width: 100%; /* Ensure the image doesn't exceed the container width */
+    height: auto; /* Maintain aspect ratio */
+  }
+
+
+/* Styles for comment input and button container */
+.comment-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  /* Adjust margin or padding as needed */
+  .comment-input {
+    margin-right: 8px;
+  }
+
+  .comment-button {
+    border-radius: 8px;
+  }
+
+  .small-profile-pic {
+    width: 60px; /* Adjust the size as needed */
+    height: 60; /* Adjust the size as needed */
+}
+
+.likeButton {
+  cursor: pointer;
+}
+
+  .profile-header {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .editProfilePic {
+    padding: 2rem;
+    border: 1px solid #ababab;
+    border-radius: 8px;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+
+  .custom-header {
+    position: fixed;
+    height: 100vh;
+    top: 2;
+    left: 0;
+    width: 100%;
+    background-color: #f5f5f5; /* Adjust background color as needed */
+    z-index: 1000; /* Set a high z-index to ensure it stays above other elements */
+  }
+
+#profile-container > * {
+    border: 1px solid black;
+}
+
+/* Custom Styles */
+.profile-info {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .stats {
+    margin-top: 10px
+  }
+
+  .stats-item {
+    margin-right: 25px;
+  }
+
+  .user-posts {
+    margin-top: 20px;
+  }
+
+  .post-container {
+    width: 25%; /* Span 4 posts horizontally */
+    margin: 10px;
+    position: relative;
+  }
+
+  .post-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .pointer {
+    cursor: pointer;
+  }
+
+  body {
+    background-color: #f5f5f5;
+  }
+
+  .card-panel {
+    padding: 20px;
+  }
+
+  .profile-image {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .container-small {
+    max-width: 600px;
+  }
+  
+
+  .custom-card {
+    border-radius: 15px; /* Set the desired border radius */
+  }

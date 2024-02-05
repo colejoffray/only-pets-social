@@ -1,0 +1,116 @@
+const User = require('../model/User')
+const Post = require('../model/Post')
+const cloudinary = require('../middleware/cloudinary')
+
+module.exports = {
+    getProfile: async(req, res, next) => {
+        try{
+            const userPosts = await Post.find({ user: req.user.id }).lean()
+
+            const userProf = await User.findById(req.user.id).lean()
+
+            res.render('profile', { posts: userPosts, user: userProf})
+
+        }catch(err){
+            console.log(err)
+        }
+        
+    },
+    getEditProfile: async (req, res, next) => {
+        const user = await User.findById(req.user.id).lean()
+        res.render('editprofile', { user })
+    },
+    editProfile: async(req,res) => {
+        try{
+            if(req.file){
+                const result = await cloudinary.uploader.upload(req.file.path)
+
+                await User.findByIdAndUpdate(req.params.id, {
+                cloudinaryId: result.public_id,
+                profilePic: result.secure_url,
+                bio: req.body.bio,
+                userName: req.body.userName
+            })
+
+            }else {
+                await User.findByIdAndUpdate(req.params.id, {
+                    bio: req.body.bio,
+                    userName: req.body.userName
+                  });
+            }
+
+            res.redirect('/profile')
+
+        }catch(err){
+             res.status(500).send('Internal Server Error');
+        }
+    },
+    getCommenterProfile: async(req,res) => {
+        try{
+            //user sending the request
+            const activeUser = req.user.id
+
+            //user who is being displayed
+            const user = await User.findById(req.params.id).lean()
+
+            //user who is being displayed's posts
+            const userPosts = await Post.find({ user: req.params.id}).lean()
+
+            //user who is being displayed's id
+            const userID = user._id.toString()
+
+        
+            const following = []
+            user.followedBy.forEach(account => following.push(account.user.toString()))
+
+            res.render('userprofile',{
+                user, activeUser, userPosts, userID, following
+            } )
+
+
+
+        }catch(err){
+            console.error(err)
+        }
+    },
+    followUser: async (req, res) => {
+        try {
+            const userBeingFollowed = req.params.id;
+            const userDoingTheFollowing = await User.findById(req.user.id).lean();
+    
+            const data = {
+                user: userDoingTheFollowing._id,
+                userName: userDoingTheFollowing.userName
+            };
+    
+            const targetUser = await User.findById(userBeingFollowed);
+    
+            if (targetUser.followedBy.some(follower => follower.user.equals(userDoingTheFollowing._id))) {
+                // User is already being followed, unfollow
+                await User.findByIdAndUpdate(userBeingFollowed, {
+                    $pull: { followedBy: { user: userDoingTheFollowing._id } }
+                });
+                res.json({ msg: 'You just unfollowed someone!' });
+            } else {
+                // User is not being followed, follow
+                await User.findByIdAndUpdate(userBeingFollowed, {
+                    $push: { followedBy: data }
+                });
+                res.json({ msg: 'You just followed someone!' });
+            }
+    
+        } catch (err) {
+            console.error(err);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    },
+    test: async (req,res) => {
+        try{
+            await User.findByIdAndUpdate(req.user.id, {test: 'test'})
+            console.log('Succes')
+            res.redirect('/feed')
+        }catch(err){
+            console.error(err)
+        }
+    }
+}

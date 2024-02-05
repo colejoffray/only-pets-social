@@ -1,0 +1,31 @@
+<div class="container">
+        <img src="/assets/t.png" alt="" class="responsive-img">
+</div>
+<div class="divider"></div>
+<div class="container">
+    <h5 class="center-align">Sign In</h5>
+    <form action="/login" method="POST" class="col s12">
+        <div class="row">
+            <div class="input-field">
+                <input type="text" id="email" name="email">
+                <label for="email">Email</label>
+            </div>
+            <div class="input-field">
+                <input type="text" id="password" name="password">
+                <label for="password">Password</label>
+            </div>
+            <div class="row center-align">
+            <input type="submit" value="Log In" class="btn">
+            </div>
+            <div class="row center-align">
+                <a href="/signup">Don't Have an Account? Create One!</a>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="row center-align">
+    <p class="m1">Or</p>
+    <a href="/auth/google" class="btn red darken-1">
+    <i class="fa-brands fa-google left"></i>Log In with Google</a>
+</div>
