@@ -5,11 +5,13 @@ const cloudinary = require('../middleware/cloudinary')
 module.exports = {
     getProfile: async(req, res, next) => {
         try{
-            const userPosts = await Post.find({ user: req.user.id }).lean()
+            const userPosts = await Post.find({ user: req.user.id, deleted: false }).lean()
 
             const userProf = await User.findById(req.user.id).lean()
 
-            res.render('profile', { posts: userPosts, user: userProf})
+            res.render('profile', { 
+                layout: 'editprofile',
+                posts: userPosts, user: userProf})
 
         }catch(err){
             console.log(err)
@@ -18,26 +20,32 @@ module.exports = {
     },
     getEditProfile: async (req, res, next) => {
         const user = await User.findById(req.user.id).lean()
-        res.render('editprofile', { user })
+        res.render('editprofile', { 
+            layout: 'editprofile',
+            user })
     },
     editProfile: async(req,res) => {
         try{
+            let profilePicURL
+            let cloudinaryString
+
             if(req.file){
                 const result = await cloudinary.uploader.upload(req.file.path)
-
-                await User.findByIdAndUpdate(req.params.id, {
-                cloudinaryId: result.public_id,
-                profilePic: result.secure_url,
-                bio: req.body.bio,
-                userName: req.body.userName
-            })
+                profilePicURL = result.secure_url
+                cloudinaryString = result.public_id
 
             }else {
-                await User.findByIdAndUpdate(req.params.id, {
-                    bio: req.body.bio,
-                    userName: req.body.userName
-                  });
+                const user = await User.findById(req.params.id);
+                profilePicUrl = user.profilePic;
+                cloudinaryString = user.cloudinaryId
             }
+
+            await User.findByIdAndUpdate(req.params.id, {
+                cloudinaryId: cloudinaryString,
+                profilePic: profilePicURL,
+                bio: req.body.bio,
+                userName: req.body.username
+            })
 
             res.redirect('/profile')
 
@@ -54,7 +62,7 @@ module.exports = {
             const user = await User.findById(req.params.id).lean()
 
             //user who is being displayed's posts
-            const userPosts = await Post.find({ user: req.params.id}).lean()
+            const userPosts = await Post.find({ user: req.params.id, deleted: false}).lean()
 
             //user who is being displayed's id
             const userID = user._id.toString()

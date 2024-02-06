@@ -3,7 +3,6 @@ const mongoose = require('mongoose')
 const PostSchema = new mongoose.Schema({
     title: {
       type: String,
-      required: true,
     },
     image: {
       type: String,
@@ -50,6 +49,10 @@ const PostSchema = new mongoose.Schema({
     createdAt: {
       type: Date,
       default: Date.now,
+    },
+    deleted: {
+      type: Boolean,
+      default: false
     },
   });
   

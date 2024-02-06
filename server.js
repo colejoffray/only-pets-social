@@ -69,6 +69,7 @@ require('./config/passport')(passport)
 app.use('/', require('./routes/main'))
 app.use('/post', require('./routes/post'))
 app.use('/profile', require('./routes/profile'))
+app.use('/search', require('./routes/search'))
 
 const PORT = process.env.PORT || 4747
 

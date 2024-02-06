@@ -69,5 +69,17 @@ module.exports = {
         }catch(err){
             console.error(err)
         }
+    },
+    deletePost: async (req, res) => {
+        try{
+            await Post.findByIdAndUpdate(req.params.id, {
+                deleted: true
+            })
+
+            res.json('Post successfully deleted')
+
+        }catch(err){
+            console.error(err)
+        }
     }
 }
