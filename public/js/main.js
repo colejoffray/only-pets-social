@@ -161,7 +161,7 @@ function showOverlay(element) {
       userDiv.innerHTML = `
         <div class="search-results-container">
           <img src='${user.profilePic}' class='responsive-img circle small-search-pic'>
-          <a href="/profile/${user._id}" class="small-text red-text text-darken-2">${user.userName}</a>
+          <a href="/profile/${user._id}" class="small-text white-text text-darken-2">${user.userName}</a>
         </div>
       `;
       searchResultsDiv.appendChild(userDiv);

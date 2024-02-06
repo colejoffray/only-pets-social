@@ -1,8 +1,9 @@
   <div class="row">
     <!-- Post column -->
       <div class="col s5 offset-s3">
+        <div class="custom-margin"></div>
         {{#each posts}}
-          <div class="card" style="border-radius: 8px;">
+          <div class="card black post-card">
             <div class="card-content">
               <!-- Person who made the post -->
               <a href="/profile/{{user}}"><span class="card-title red-text text-darken-2">{{createdBy}}</span></a>
@@ -14,13 +15,13 @@
 
               <!-- Number of likes -->
               <div class="custom-margin">
-                <p>{{likes}} <span><i class="fa-regular fa-heart likeButton" data-id="{{_id}}"></i></span></p>
+                <p class="white-text">{{likes}} <span><i class="fa-regular fa-heart likeButton white-text" data-id="{{_id}}"></i></span></p>
               </div>
               
 
               <!-- Caption -->
               <div class="custom-margin">
-                <p><a href="/profile/{{user}}" class="red-text text-darken-2">{{createdBy}}</a>: {{caption}}</p>
+                <p class="white-text"><a href="/profile/{{user}}" class="red-text text-darken-2">{{createdBy}}</a>: {{caption}}</p>
               </div>
 
               <div class="divider custom-margin"></div>
@@ -28,7 +29,7 @@
               <div>
                   <ul>
                       {{#each comments}}
-                      <li>
+                      <li class="white-text">
                           <a href="/profile/{{user}}" class="red-text">{{userName}}:</a> {{text}}
                       </li>
                       {{/each}}
@@ -40,15 +41,15 @@
             <!-- Input area for comments -->
             <div class="card-action comment-container" style="border-radius: 8px;" >
                 <input type="text" name='comment' placeholder="Add a comment" class="comment-input">
-                <button class="btn waves-effect waves-light comment-button" type="submit" for="comment" name="action" data-id="{{_id}}"><span><i class="fa-solid fa-plus"></i></span></button>
+                <button class="btn waves-effect waves-light comment-button red accent-1" type="submit" for="comment" name="action" data-id="{{_id}}"><span><i class="fa-solid fa-plus"></i></span></button>
             </div>
           </div>
         {{/each}}
       </div>
       <div class="col s2 offset-s1">
           <div class="input-field">
-              <input type="text" id="searchInput" class="validate" oninput="searchUsers()">
-              <label for="searchInput">Search Users</label>
+              <input type="text" id="searchInput" class="validate white-text" oninput="searchUsers()">
+              <label for="searchInput" class="white-text">Search Users</label>
               <div id="searchResults">
               <!-- Results will be dynamically populated here -->
             </div>

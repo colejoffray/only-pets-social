@@ -12,6 +12,7 @@ const path = require('path')
 const logger = require('morgan')
 require('dotenv').config(({ path: './config/.env'}))
 
+const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
 
 //Express middleware - it allows for requests body to be jSON and for our CSS and JS to be served on every request
 app.use(express.urlencoded({ extended: false }))

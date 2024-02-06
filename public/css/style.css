@@ -188,4 +188,8 @@
     height: 30px;
 
   }
+
+  .post-card {
+    border: 1px solid gray;
+  }
   

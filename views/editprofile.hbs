@@ -1,6 +1,6 @@
 <div class="container">
   <div class="col s6 offset-s3">
-    <h4>Edit Profile</h4>
+    <h4 class="white-text">Edit Profile</h4>
     <div class="divider"></div>
     <form action="/profile/edit/{{user._id}}" enctype="multipart/form-data" method="POST">
       <input type="hidden" name="_method" value="PUT">
@@ -11,8 +11,14 @@
             <div>
               <img src="{{user.profilePic}}" alt="" class="responsive-img circle small-profile-pic">
             </div>
-            <div class="input-field">
-              <input type="file" name="image" id="image">
+            <div class="file-field input-field">
+              <div class="btn red lighten-2">
+                <span><i class="fa-solid fa-image"></i></span>
+                <input type="file" multiple>
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" placeholder="Upload one or more files">
+              </div>
             </div>
           {{else}}
           <div>
@@ -26,19 +32,19 @@
       </div>
         <div class="row">
           <div class="input-field">
-            <input type="text" name="username" id="username" value="{{user.userName}}">
-            <label for="username">Username</label>
+            <input type="text" name="username" id="username" value="{{user.userName}}" class="white-text">
+            <label for="username" class="grey-text">Username</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field">
-            <textarea name="bio" id="bio" cols="30" rows="10" class="materialize-textarea">{{user.bio}}</textarea>
-            <label for="bio">Bio</label>
+            <textarea name="bio" id="bio" cols="30" rows="10" class="materialize-textarea white-text">{{user.bio}}</textarea>
+            <label for="bio" class="grey-text">Bio</label>
           </div>
         </div>
         <div class="row center-align">
-              <button type="submit" class="btn" id="save-changes">Save Changes</button>
-              <a href="/profile/{{user.id}}" class="btn">Cancel</a>
+              <button type="submit" class="btn red lighten-2" id="save-changes">Save Changes</button>
+              <a href="/profile/{{user.id}}" class="btn red darken-1">Cancel</a>
         </div>
     </form>
   </div>

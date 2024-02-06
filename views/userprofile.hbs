@@ -1,6 +1,7 @@
 {{#if_eq userID activeUser}}
     <div class="col s6 offset-s3">
-            <div class="profile-info">
+            <div class="custom-margin"></div>
+            <div class="profile-info white-text">
                 <div class="row profile-header">
                     {{#if user.profilePic}}
                     <div class="profilePic">
@@ -19,7 +20,7 @@
                     <span class="stats-item">Followers: {{user.followedBy.length}}</span>
                 </div>
                 <div>
-                    <a href="/profile/edit/{{user._id}}" class="btn">Edit Profile</a>
+                    <a href="/profile/edit/{{user._id}}" class="btn red darken-1">Edit Profile</a>
                 </div>
                 
             </div>
@@ -40,7 +41,8 @@
         </div>
 {{else}}
     <div class="col s6 offset-s3">
-            <div class="profile-info">
+            <div class="custom-margin"></div>
+            <div class="profile-info white-text">
                 <div class="row profile-header">
                     {{#if user.profilePic}}
                     <div class="profilePic">
