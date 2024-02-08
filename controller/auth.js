@@ -1,6 +1,7 @@
 const passport = require('passport')
 const User = require('../model/User')
 const validator = require('validator')
+const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
 
 module.exports = {
     getLoginPage: (req,res,next) => {
@@ -77,6 +78,26 @@ module.exports = {
              }catch(err){
                 console.error(err)
              }
+
+             const account = await stripe.accounts.create({
+              country: 'US',
+              type: 'express',
+              capabilities: {
+                card_payments: {
+                  requested: true,
+                },
+                transfers: {
+                  requested: true,
+                },
+              },
+              business_type: 'individual',
+              business_profile: {
+                url: 'https://cole-joffray.netlify.app',
+              },
+            });
+  
+            // Send the account ID back to the client
+          res.status(200).json({ accountId: account.id });
 
              req.logIn(user, (err) => {
                 if (err) {

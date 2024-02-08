@@ -5,9 +5,7 @@ module.exports = {
     getFeed: async (req, res) => {
         try{
             const posts = await Post.find({ deleted: false}).sort({ createdAt: 'desc'}).lean()
-            const users = await users.find().lean(
-            
-            )
+            res.render('feed', { posts: posts})
         }catch(err){
             console.log(err)
         }

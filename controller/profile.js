@@ -114,9 +114,17 @@ module.exports = {
     },
     deactivateUser : async (req, res) => {
         try{ 
+            await Post.updateMany({ user: req.params.id }, { $set: { deleted: true } });
+            await User.findByIdAndDelete(req.params.id)
+
+            console.log('User Successfully Deleted')
+
+            res.redirect('/')
 
         }catch (err){
-            console.error(err)
+            // Handle errors
+            console.error(err);
+            res.status(500).send('Error deactivating user.');
         }
     }
 }

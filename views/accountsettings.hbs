@@ -88,7 +88,7 @@
 
                 <div class="row center-align">
                     <button type="submit" class="btn red lighten-2" id="save-changes">Save Changes</button>
-                    <a href="/profile/{{user.id}}" class="btn red darken-1">Cancel</a>
+                    <a href="/profile/{{user._id}}" class="btn red darken-1">Cancel</a>
                 </div>
              </form>
             </div>
@@ -103,10 +103,10 @@
 
 
             {{!-- Deactivate Account --}}
-            <div class="row custom-margins">
-                <form action="/profile/deactivate/{{user.id}}" method="POST">
+            <div class="row custom-margin">
+                <form action="/profile/deactivate/{{user._id}}" method="POST" class="custom-margin center">
                     <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit"></button>
+                    <button type="submit" class="btn red orange custom-margin center">Deactivate Account</button>
                 </form>
             </div>
             

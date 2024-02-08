@@ -17,6 +17,7 @@ router.get('/:id', ensureAuth, profileController.getCommenterProfile)
 router.put('/follow/:id', ensureAuth, profileController.followUser)
 router.post('/edit/:id', ensureAuth, multerMiddleware,  profileController.editProfile)
 router.post('/account/edit/:id', ensureAuth, multerMiddleware, profileController.editProfile)
+router.delete('/deactivate/:id', ensureAuth, profileController.deactivateUser)
 
 
 
