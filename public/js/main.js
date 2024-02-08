@@ -1,4 +1,3 @@
-
 const likes = document.querySelectorAll('.likeButton')
 const commentButtons = document.querySelectorAll('.comment-button')
 
@@ -88,35 +87,11 @@ function showOverlay(element) {
         window.location.href = '/profile'
     }
   }
-  
-  function editPost(postId) {
-    // Handle the edit functionality (e.g., redirect to the edit page)
-    window.location.href = `/post/edit/${postId}`;
-  }
-  
-  function deletePost(postId) {
-    // Handle the delete functionality (e.g., show a confirmation modal)
-    const confirmed = confirm('Are you sure you want to delete this post?');
-    if (confirmed) {
-      fetch(`/post/delete/${postId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-      })
-      .then(res => {
-        if(!res.ok){
-            console.log('Network error, post could not be deleted')
-        }
-        location.reload()
-      })
-      .catch(err => {
-        console.error(err)
-      })
 
-    }
-  }
+ 
 
+
+  //On page search user functionality 
   let timerId;
 
   function searchUsers() {
@@ -140,6 +115,25 @@ function showOverlay(element) {
     }, 300); // Adjust the delay as needed
   }
 
+
+   //EDIT A POST
+  
+   function editPost(id, image, caption, title) {
+    document.getElementById('title').value = title
+    document.getElementById('caption').value = caption
+    document.getElementById('editPostImg').src = image
+  }
+
+
+
+
+  //delete a post 
+  function deletePost(id)  {
+    const form = document.getElementById('deleteForm')
+    form.action = `/post/delete/${id}`
+}
+
+
   function displaySearchResults(results) {
     const searchResultsDiv = document.getElementById('searchResults');
 
@@ -159,13 +153,14 @@ function showOverlay(element) {
     results.forEach(user => {
       const userDiv = document.createElement('div');
       userDiv.innerHTML = `
-        <div class="search-results-container">
+      <div class='left'>
           <img src='${user.profilePic}' class='responsive-img circle small-search-pic'>
           <a href="/profile/${user._id}" class="small-text white-text text-darken-2">${user.userName}</a>
-        </div>
+      </div>
       `;
       searchResultsDiv.appendChild(userDiv);
     });
   }
+
 
 

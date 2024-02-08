@@ -71,6 +71,8 @@ app.use('/', require('./routes/main'))
 app.use('/post', require('./routes/post'))
 app.use('/profile', require('./routes/profile'))
 app.use('/search', require('./routes/search'))
+app.use('/stripe', require('./routes/stripe'))
+app.use('/account', require('./routes/account'))
 
 const PORT = process.env.PORT || 4747
 

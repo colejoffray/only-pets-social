@@ -16,7 +16,7 @@ router.get('/edit/:id', ensureAuth, profileController.getEditProfile)
 router.get('/:id', ensureAuth, profileController.getCommenterProfile)
 router.put('/follow/:id', ensureAuth, profileController.followUser)
 router.post('/edit/:id', ensureAuth, multerMiddleware,  profileController.editProfile)
-router.put('/test', ensureAuth, profileController.test)
+router.post('/account/edit/:id', ensureAuth, multerMiddleware, profileController.editProfile)
 
 
 

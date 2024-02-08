@@ -158,15 +158,6 @@
     justify-content: center;
     align-items: center;
   }
-  
-  .overlay button {
-    background-color: #fff;
-    color: #333;
-    border: none;
-    padding: 8px 16px;
-    margin: 5px;
-    cursor: pointer;
-  }
 
   .search-results-container {
     height: fit-content;
@@ -192,4 +183,14 @@
   .post-card {
     border: 1px solid gray;
   }
+
+  .small-search-input {
+    width: 150px;
+  }
+
+  .overlay {
+    z-index: 9999; /* Adjust the z-index as needed to ensure it appears over other elements */
+}
+
+
   

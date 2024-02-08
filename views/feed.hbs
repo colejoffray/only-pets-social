@@ -1,6 +1,8 @@
   <div class="row">
     <!-- Post column -->
-      <div class="col s5 offset-s3">
+      <div class="col s1 hide-on-large-only"></div>
+      <div class="col s3 hide-on-med-and-down"></div>
+      <div class="col s10 l6">
         <div class="custom-margin"></div>
         {{#each posts}}
           <div class="card black post-card">
@@ -10,7 +12,9 @@
 
               <!-- Image with responsive class and max width/height -->
               <div class="container">
-                <img src="{{image}}" alt="Post Image" class="responsive-img custom-margin">
+                <div class="post-container-feed">
+                  <img src="{{image}}" alt="Post Image" class="responsive-img">
+                </div> 
               </div>
 
               <!-- Number of likes -->
@@ -40,21 +44,14 @@
 
             <!-- Input area for comments -->
             <div class="card-action comment-container" style="border-radius: 8px;" >
-                <input type="text" name='comment' placeholder="Add a comment" class="comment-input">
+                <input type="text" name='comment' placeholder="Add a comment" class="comment-input white-text">
                 <button class="btn waves-effect waves-light comment-button red accent-1" type="submit" for="comment" name="action" data-id="{{_id}}"><span><i class="fa-solid fa-plus"></i></span></button>
             </div>
           </div>
         {{/each}}
       </div>
-      <div class="col s2 offset-s1">
-          <div class="input-field">
-              <input type="text" id="searchInput" class="validate white-text" oninput="searchUsers()">
-              <label for="searchInput" class="white-text">Search Users</label>
-              <div id="searchResults">
-              <!-- Results will be dynamically populated here -->
-            </div>
-          </div>
-      </div>
+      
+      
   </div>
 
   

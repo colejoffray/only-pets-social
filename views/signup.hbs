@@ -1,5 +1,5 @@
 <div class="container">
-        <img src="/assets/t.png" alt="" class="responsive-img">
+    <img src="/assets/logo.png" alt="" class="responsive-img">
 </div>
 <div class="divider"></div>
 <div class="container">
@@ -13,29 +13,36 @@
             <div>{{msg}}</div>
         {{/each}}
     {{/if}}
-    <h5 class="center-align">Sign Up</h5>
+    <h5 class="center-align white-text">Sign Up</h5>
     <form action="/signup" method="POST" class="col s12">
         <div class="row">
             <div class="input-field">
-                <input type="text" id="email" name="email">
-                <label for="email">Email</label>
+                <input type="text" id="firstname" name="firstname" class="white-text"> <!-- Add white-text class here -->
+                <label for="firstname" class="white-text">First Name</label>
             </div>
             <div class="input-field">
-                <input type="text" id="userName" name="userName">
-                <label for="userName">Username</label>
+                <input type="text" id="lastname" name="lastname" class="white-text"> <!-- Add white-text class here -->
+                <label for="lastname" class="white-text">Last Name</label>
             </div>
             <div class="input-field">
-                <input type="password" id="password" name="password">
-                <label for="password">Password</label>
+                <input type="text" id="email" name="email" class="white-text"> <!-- Add white-text class here -->
+                <label for="email" class="white-text">Email</label>
             </div>
             <div class="input-field">
-                <input type="password" id="confirmPassword" name="confirmPassword">
-                <label for="confirmPassword">Re-Type Password</label>
+                <input type="text" id="userName" name="userName" class="white-text"> <!-- Add white-text class here -->
+                <label for="userName" class="white-text">Username</label>
+            </div>
+            <div class="input-field">
+                <input type="password" id="password" name="password" class="white-text"> <!-- Add white-text class here -->
+                <label for="password" class="white-text">Password</label>
+            </div>
+            <div class="input-field">
+                <input type="password" id="confirmPassword" name="confirmPassword" class="white-text"> <!-- Add white-text class here -->
+                <label for="confirmPassword" class="white-text">Re-Type Password</label>
             </div>
             <div class="row center-align">
-            <input type="submit" value="Create Account" class="btn">
+                <input type="submit" value="Create Account" class="btn">
             </div>
         </div>
-
     </form>
 </div>

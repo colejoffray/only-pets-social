@@ -1,0 +1,120 @@
+<div class="container">
+    <div class="row">
+        <div class="col s1 m2"></div>
+        <div class="col s10 m8 white-text">
+            <h4>Account Settings</h4>
+            <div class="divider custom-margin"></div>
+
+            {{!-- Profile Details --}}
+
+            <h5>Profile</h5>
+            <div class="custom-margin">
+                <form action="/profile/account/edit/{{user._id}}" enctype="multipart/form-data" method="POST">
+                <input type="hidden" name="_method" value="PUT">
+                <div class="row">
+                    <p class="custom-margin">Change Profile Picture</p>
+                    <div class="editProfilePic">
+                    {{#if user.profilePic}}
+                        <div>
+                        <img src="{{user.profilePic}}" alt="" class="responsive-img circle small-profile-pic">
+                        </div>
+                        <div class="file-field input-field">
+                        <div class="btn red lighten-2">
+                            <span><i class="fa-solid fa-image"></i></span>
+                            <input type="file" multiple>
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                        </div>
+                        </div>
+                    {{else}}
+                    <div>
+                        <img src="/assets/blank-profile-circle.png" alt="" class="responsive-img circle small-profile-pic">
+                    </div>
+                    <div class="input-field">
+                        <input type="file" name="image" id="image">
+                    </div>
+                    {{/if}}
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="input-field">
+                        <input type="text" name="username" id="username" value="{{user.userName}}" class="white-text">
+                        <label for="username" class="grey-text">Username</label>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="input-field">
+                        <textarea name="bio" id="bio" cols="30" rows="10" class="materialize-textarea white-text">{{user.bio}}</textarea>
+                        <label for="bio" class="grey-text">Bio</label>
+                    </div>
+                </div>
+
+                <div class="row center-align">
+                    <button type="submit" class="btn red lighten-2" id="save-changes">Save Changes</button>
+                    <a href="/profile/{{user.id}}" class="btn red darken-1">Cancel</a>
+                </div>
+             </form>
+
+             {{!-- Account Details --}}
+             <h5 class="custom-margin">Account Details</h5>
+             <form action="/profile/account/edit/{{user._id}}" enctype="multipart/form-data" method="POST" class="custom-margin">
+                <input type="hidden" name="_method" value="PUT">
+
+                <div class="row">
+                    <div class="input-field">
+                        <input type="text" name="username" id="username" value="{{user.firstName}}" class="white-text">
+                        <label for="username" class="grey-text">First Name</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field">
+                        <input type="text" name="username" id="username" value="{{user.lastName}}" class="white-text">
+                        <label for="username" class="grey-text">Last Name</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field">
+                        <input type="email" name="username" id="username" value="{{user.email}}" class="white-text">
+                        <label for="username" class="grey-text">Email</label>
+                    </div>
+                </div>
+
+                <div class="row center-align">
+                    <button type="submit" class="btn red lighten-2" id="save-changes">Save Changes</button>
+                    <a href="/profile/{{user.id}}" class="btn red darken-1">Cancel</a>
+                </div>
+             </form>
+            </div>
+
+
+
+             {{!-- Banking Info --}}
+            <h5>Banking Info</h5>
+            <div class="center">
+                <a href="#" class="btn blue darken-2 custom-margin">Connect Payments</a>
+            </div>
+
+
+            {{!-- Deactivate Account --}}
+            <div class="row custom-margins">
+                <form action="/profile/deactivate/{{user.id}}" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit"></button>
+                </form>
+            </div>
+            
+
+             
+
+        </div>
+        
+    </div>
+</div>
+       

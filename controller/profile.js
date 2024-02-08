@@ -10,7 +10,6 @@ module.exports = {
             const userProf = await User.findById(req.user.id).lean()
 
             res.render('profile', { 
-                layout: 'editprofile',
                 posts: userPosts, user: userProf})
 
         }catch(err){
@@ -21,10 +20,10 @@ module.exports = {
     getEditProfile: async (req, res, next) => {
         const user = await User.findById(req.user.id).lean()
         res.render('editprofile', { 
-            layout: 'editprofile',
             user })
     },
     editProfile: async(req,res) => {
+        console.log(req)
         try{
             let profilePicURL
             let cloudinaryString
@@ -47,9 +46,10 @@ module.exports = {
                 userName: req.body.username
             })
 
-            res.redirect('/profile')
+            req.url === `/edit/${req.user.id}` ? res.redirect('/profile') : res.redirect('/account')
 
         }catch(err){
+            console.error(err)
              res.status(500).send('Internal Server Error');
         }
     },
@@ -112,12 +112,10 @@ module.exports = {
             res.status(500).json({ error: 'Internal Server Error' });
         }
     },
-    test: async (req,res) => {
-        try{
-            await User.findByIdAndUpdate(req.user.id, {test: 'test'})
-            console.log('Succes')
-            res.redirect('/feed')
-        }catch(err){
+    deactivateUser : async (req, res) => {
+        try{ 
+
+        }catch (err){
             console.error(err)
         }
     }

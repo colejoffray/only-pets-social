@@ -1,5 +1,6 @@
 {{#if_eq userID activeUser}}
-    <div class="col s6 offset-s3">
+    <div class="col s2"></div>
+    <div class="col s8">
             <div class="custom-margin"></div>
             <div class="profile-info white-text">
                 <div class="row profile-header">
@@ -29,11 +30,13 @@
 
             <!-- User Posts -->
             {{#each userPosts}}
-                <div class="col s3 user-posts" onmouseover="showOverlay(this)" onmouseout="hideOverlay(this)">
-                    <img src="{{image}}" class="responsive-img" alt="Post">
-                    <div class="overlay">
-                        <button class="edit-btn" onclick="editPost('{{_id}}')"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="delete-btn" onclick="confirmDelete('{{_id}}')"><i class="fa-solid fa-trash"></i></button>
+                <div class="col s12 m6 l3">
+                    <div class="user-posts" onmouseover="showOverlay(this)" onmouseout="hideOverlay(this)">
+                        <img src="{{image}}" class="responsive-img" alt="Post">
+                        <div class="overlay">
+                            <button class="edit-btn" onclick="editPost('{{_id}}')"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="delete-btn" onclick="confirmDelete('{{_id}}')"><i class="fa-solid fa-trash"></i></button>
+                        </div>
                     </div>
                 </div>
             {{/each}}

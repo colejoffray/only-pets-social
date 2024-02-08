@@ -25,7 +25,7 @@ module.exports = {
             return next(err);
           }
           // Redirect to the user's profile page
-          res.redirect('/feed');
+          res.redirect('/feed')
         });
       })(req, res, next);
     },
@@ -51,6 +51,9 @@ module.exports = {
             // }
 
             const user = new User({
+                firstName: req.body.firstname,
+                lastName: req.body.lastname,
+                fullName: `${req.body.firstname} ${req.body.lastname}`,
                 userName: req.body.userName,
                 email: req.body.email,
                 password: req.body.password,
@@ -79,7 +82,7 @@ module.exports = {
                 if (err) {
                   return next(err);
                 }
-                res.redirect("/feed");
+                res.redirect('/stripe/connect-payment');
               })
             
 

@@ -9,7 +9,11 @@ module.exports = {
     },
     createPost: async (req,res,next) => {
         try{
-            const result = await cloudinary.uploader.upload(req.file.path)
+            const result = await cloudinary.uploader.upload(req.file.path, {
+                width: 1080,
+                height: 1080,
+                crop: "fill",
+            })
 
             await Post.create({
                 title: req.body.title,
@@ -76,7 +80,7 @@ module.exports = {
                 deleted: true
             })
 
-            res.json('Post successfully deleted')
+            res.redirect('/profile')
 
         }catch(err){
             console.error(err)
