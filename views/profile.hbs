@@ -36,11 +36,16 @@
             <div class="user-posts" onmouseover="showOverlay(this)" onmouseout="hideOverlay(this)">
                 <img src="{{image}}" class="responsive-img" alt="Post">
                 <div class="overlay">
-                    <button class="btn btn-small red lighten-1 modal-trigger" data-target="modalEdit" onclick="editPost('{{_id}}', '{{image}}', '{{caption}}', '{{title}}')"><i class="fa-solid fa-pen-to-square"></i></button>
-                    <button class="btn btn-small red darken-2 modal-trigger" data-target="modalDelete" onclick="deletePost('{{_id}}')"><i class="fa-solid fa-trash"></i></button>
+                    <button class="btn btn-small red lighten-1 modal-trigger" data-target="modalEdit" onclick="editPost(&quot;{{_id}}&quot;, &quot;{{image}}&quot;, &quot;{{caption}}&quot;, &quot;{{title}}&quot;)">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                    <button class="btn btn-small red darken-2 modal-trigger" data-target="modalDelete" onclick="deletePost(&quot;{{_id}}&quot;)">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
                 </div>
             </div>
         </div>
+
         {{/each}}
     </div>
     </div>
@@ -48,7 +53,7 @@
 
    {{!-- Edit Post Modal --}}
   <div id="modalEdit" class="modal">
-    <form action="" method="POST">
+    <form action="" method="POST" id="editPost">
         <input type="hidden" name="_method" value="PUT">
         <div class="modal-content">
             <div class="container center">

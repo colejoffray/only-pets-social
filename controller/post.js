@@ -85,5 +85,14 @@ module.exports = {
         }catch(err){
             console.error(err)
         }
+    },
+    editUserPost: async(req, res) => {
+        try{
+            await Post.findByIdAndUpdate(req.params.id, { title: req.body.title, caption: req.body.caption})
+            res.redirect('/profile')
+        }catch(err){
+            console.error(err)
+            res.status(500).send('Network error: Could not update post')
+        } 
     }
 }

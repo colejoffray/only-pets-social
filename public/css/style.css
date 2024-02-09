@@ -192,5 +192,9 @@
     z-index: 9999; /* Adjust the z-index as needed to ensure it appears over other elements */
 }
 
+.hidden {
+  display: none;
+}
+
 
   

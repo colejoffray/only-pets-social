@@ -4,19 +4,15 @@ const bcrypt = require('bcrypt')
 const UserSchema = new mongoose.Schema({
     firstName: {
       type: String,
-      required: true
     },
     lastName: {
       type: String,
-      required: true
     },
     fullName: {
       type: String,
-      required: true
     },
     accountType: {
       type: String,
-      default: 'individual'
     },
     userName: {
         type: String,
@@ -29,6 +25,9 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String
     },
+    country: {
+      type: String
+    },
     bio: {
       type: String
     },
@@ -40,8 +39,12 @@ const UserSchema = new mongoose.Schema({
       type: String,
       require: true,
     },
-    test: {
+    stripeAccountId: {
       type: String,
+    },
+    onboardedComplete: {
+      type: Boolean,
+      default: false
     },
     followedBy : [
       {

@@ -1,25 +1,18 @@
 const express = require('express')
 const router = express.Router()
-const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
-const mainController = require('../controller/main')
+const stripeController = require('../controller/stripe')
+const { ensureAuth } = require('../middleware/auth')
 
 
-router.get('/create-account', mainController.getStripeAccountCreateForm)
+router.get('/connect-payment', ensureAuth, stripeController.getConnectPaymentPrompt)
 
-router.post('/create-account', async(req, res) => {
-    try{
+router.get('/account-create', ensureAuth, stripeController.getAccountCreateForm)
 
+router.get('/onboarded', ensureAuth, stripeController.onboardUser)
 
-    }catch(err){
-        console.error('Error creating stripe account', err.message)
-        res.status(500).json({ err: 'Internal service error'})
-    }
-})
+router.get('/onboarded-false', ensureAuth, stripeController.getOnboardedFalse)
 
-
-router.get('/connect-payment', async (req, res) => {
-  res.render('stripe/connectpayment')
-})
+router.post('/authorize', ensureAuth, stripeController.createStripeAccountandUrl)
 
 
 module.exports = router

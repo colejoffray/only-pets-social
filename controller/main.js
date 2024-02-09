@@ -19,13 +19,4 @@ module.exports = {
             console.error(err)
         }
     },
-    getStripeAccountCreateForm: async(req, res) => {
-        try{
-            res.render('stripe/createaccount')
-
-        }catch(err){
-            console.error(err)
-            res.status(500).json({ error: 'Internal Server Error'})
-        }
-    }
 }

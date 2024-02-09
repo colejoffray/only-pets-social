@@ -73,37 +73,13 @@ module.exports = {
                 next(err);
               }
 
-             try{
-                await user.save()
-             }catch(err){
-                console.error(err)
-             }
-
-             const account = await stripe.accounts.create({
-              country: 'US',
-              type: 'express',
-              capabilities: {
-                card_payments: {
-                  requested: true,
-                },
-                transfers: {
-                  requested: true,
-                },
-              },
-              business_type: 'individual',
-              business_profile: {
-                url: 'https://cole-joffray.netlify.app',
-              },
-            });
-  
-            // Send the account ID back to the client
-          res.status(200).json({ accountId: account.id });
+             await user.save()
 
              req.logIn(user, (err) => {
                 if (err) {
                   return next(err);
                 }
-                res.redirect('/stripe/connect-payment');
+                res.redirect('/stripe/account-create');
               })
             
 

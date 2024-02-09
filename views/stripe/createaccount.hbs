@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="row">
+            <div class="row">
+                <div class="center">
+                    <img src="/assets/logo.png" alt="logo" class="responsive-img center">
+                </div>
+            </div>
+            <div class="row">
+                    <h5 class="custom-margin center">Personal Information</h5>
+                    <form action="/stripe/authorize" method="POST">
+                        <div class="input-field">
+                            <input type="text" id="firstname" name="firstname" class="white-text"> <!-- Add white-text class here -->
+                            <label for="firstname" class="white-text">First Name</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="text" name="lastname" class="white-text">
+                            <label for="lastname" class="white-text">Last Name</label>
+                        </div>
+
+                        <div class="row custom-margin">
+                            <label>Select a Country</label>
+                            <select class="browser-default" id="status">
+                            </select>
+                        </div>
+
+                        <div class="row custom-margin">
+                            <label>Select Account Type</label>
+                            <select class="browser-default" id="accountType" name="accountType" onchange="toggleFields()">
+                                <option value="individual" selected>Individual</option>
+                                <option value="company" >Company</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field hidden custom-margin" id="businessUrl">
+                            <input type="text" name="businessUrl" class="white-text">
+                            <label for="businessUrl" class="white-text">Business Url</label>
+                        </div>
+
+                        <div class="row custom-margin center">
+                            <button type="submit" class="btn btn-large red darken-2">Create Account</button>
+                        </div>
+                    </form>
+            </div>
+        </div>
+</div>
+
+
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems, options);
+    });
+
+    function toggleFields(){
+        const isCompany = document.getElementById('accountType').value === 'business'
+        const businessUrlInput = document.getElementById('businessUrl')
+
+        console.log(document.getElementById('account-type'))
+
+        if(isCompany){
+            businessUrlInput.classList.remove('hidden')
+        }else{
+            businessUrlInput.classList.add('hidden')
+        }
+    }
+</script>

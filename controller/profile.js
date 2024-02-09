@@ -67,12 +67,15 @@ module.exports = {
             //user who is being displayed's id
             const userID = user._id.toString()
 
+            if(req.user.id === userID){
+                res.redirect('/profile')
+            }
         
             const following = []
             user.followedBy.forEach(account => following.push(account.user.toString()))
 
             res.render('userprofile',{
-                user, activeUser, userPosts, userID, following
+                user, userPosts, following, activeUser
             } )
 
 

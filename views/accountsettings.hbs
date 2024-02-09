@@ -97,9 +97,17 @@
 
              {{!-- Banking Info --}}
             <h5>Banking Info</h5>
+            {{#if_eq user.onboardedComplete false}}
             <div class="center">
-                <a href="#" class="btn blue darken-2 custom-margin">Connect Payments</a>
+                <form action="/stripe/authorize" method="POST">
+                    <button type="submit" class="btn blue darken-2">Connect Payments</button>
+                </form>
             </div>
+            {{else}}
+            <div class="center">
+                <p>Payments Connected</p>
+            </div>
+            {{/if_eq}}
 
 
             {{!-- Deactivate Account --}}
