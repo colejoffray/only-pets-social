@@ -1,6 +1,8 @@
 const User = require('../model/User')
 const Post = require('../model/Post')
 const cloudinary = require('../middleware/cloudinary')
+const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
+require('dotenv').config()
 
 module.exports = {
     getProfile: async(req, res, next) => {
@@ -113,6 +115,35 @@ module.exports = {
         } catch (err) {
             console.error(err);
             res.status(500).json({ error: 'Internal Server Error' });
+        }
+    },
+    subscribeToUser: async(req, res) => {
+        try{
+            //find the user that is being subscribed too
+            const user = await User.findById(req.params.id)
+
+            //create a stripe checkout session
+            const session = await stripe.checkout.sessions.create({
+                mode: 'subscription',
+                payment_method_types: ['card', 'us_bank_account'],
+                line_items: [{
+                  price: process.env.PRICE_ID,
+                  quantity: 1,
+                }],
+                metadata: {
+                    client_reference_id: user._id.toString()
+                },
+                success_url: `${process.env.PUBLIC_DOMAIN}/stripe/payment-success/${user._id}`
+                ,
+                cancel_url: `${process.env.PUBLIC_DOMAIN}/profile/${user._id}`
+              });
+
+            res.redirect(session.url)
+
+
+        }catch(err){
+            console.error(err)
+            res.status(500).send('Network error could not create checkout session')
         }
     },
     deactivateUser : async (req, res) => {

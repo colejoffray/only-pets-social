@@ -8,6 +8,8 @@ router.get('/connect-payment', ensureAuth, stripeController.getConnectPaymentPro
 
 router.get('/account-create', ensureAuth, stripeController.getAccountCreateForm)
 
+router.get('/payment-success/:id', ensureAuth, stripeController.getPaymentSuccess)
+
 router.get('/onboarded', ensureAuth, stripeController.onboardUser)
 
 router.get('/onboarded-false', ensureAuth, stripeController.getOnboardedFalse)

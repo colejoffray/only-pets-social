@@ -90,5 +90,17 @@ module.exports = {
     },
     getOnboardedFalse: async (req, res) => {
         res.render('stripe/onboardedfalse')
+    },
+    getPaymentSuccess: async (req, res) => {
+        try{
+            const userID = req.params.id
+
+            const user = await User.findById(userID).lean()
+
+            res.render('stripe/paymentsuccess', { user: user})
+
+        }catch(err){
+            console.error(err)
+        }
     }
 }

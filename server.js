@@ -14,10 +14,19 @@ require('dotenv').config(({ path: './config/.env'}))
 
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
 
+
 //Express middleware - it allows for requests body to be jSON and for our CSS and JS to be served on every request
 app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
 app.use(express.static(path.join(__dirname, 'public')))
+// Configure express.json() middleware
+app.use((req, res, next) => {
+    // Skip parsing JSON for API routes
+    if (req.originalUrl.startsWith('/api')) {
+        next();
+    } else {
+        express.json()(req, res, next);
+    }
+});
 
 app.use(flash())
 
@@ -65,6 +74,8 @@ app.use(logger('dev'))
  app.use(passport.session());
 
 require('./config/passport')(passport)
+
+app.use('/api', require('./routes/api'))
 
 //ROUTES
 app.use('/', require('./routes/main'))
