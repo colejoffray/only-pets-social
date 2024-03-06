@@ -79,7 +79,7 @@ module.exports = {
                 if (err) {
                   return next(err);
                 }
-                res.redirect('/stripe/account-create');
+                res.redirect('/feed');
               })
             
 
@@ -91,7 +91,7 @@ module.exports = {
     logoutUser: (req, res) => {
       req.logout(function(err){
           if(err) return (next(err))
-          res.json({ message: 'logged out user'})
+          res.redirect('/')
       })
   }
 }
