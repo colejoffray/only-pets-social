@@ -1,0 +1,32 @@
+
+    <div class="row custom-margin">
+        <div class="col s12 white-text custom-margin">
+            <div class="row">
+                {{#each result}}
+                <div class="col s12 m4 l3 black-text custom-margin">
+                    <div class="container white product-containers">
+                         <div class="product-img-container center">
+                            <img src="{{image}}" alt="" class="responsive-img">
+                        </div>
+
+                        <div class="row">
+                            <p>{{title}}</p>
+                        </div>
+
+                        <div class="row">
+                            <p><span><i class="fa-sharp fa-solid fa-star" style="color: #FFD43B;"></i></span> {{rating}} ({{ratings_total}})</p>
+                        </div>
+
+                        <div class="row">
+                            <h5>{{price.raw}} <span>{{price.currency}}</span></h5>
+                        </div>
+                        
+                        <div class="row">
+                            <a href="{{link}}" class="btn red darken-2 center">Buy Now!</a>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>      
+        </div>
+    </div>

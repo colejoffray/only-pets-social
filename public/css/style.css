@@ -196,5 +196,16 @@
   display: none;
 }
 
+.product-containers {
+  padding: 2rem;
+  height: 70vh;
+  border-radius: 8px;
+}
+
+.product-image-container {
+  height: 500px;
+  width: 500px;
+}
+
 
   
